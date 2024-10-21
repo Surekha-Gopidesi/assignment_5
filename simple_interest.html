@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Simple Interest Calculator</title>
+	<style>
+		body {
+			background-image:url("math1.png");
+            background-size: cover; 
+		}
+		
+		.calculator {
+			background-color: #208fcf; 
+			padding: 20px;
+			border: 1px solid #e83e99;
+			border-radius: 10px;
+			width: 300px;
+			margin: 40px auto;
+		}
+		input[type="number"] {
+			width: 90%;
+			height: 30px;
+			margin-bottom: 10px;
+			padding: 10px;
+			border: 1px solid #e83e99;
+			border-radius: 5px;
+		}
+		
+		
+		button {
+			background-color: #4CAF50; 
+			color: #fff;
+			padding: 10px 20px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+		}
+		h1{
+            text-align: center;
+            color: antiquewhite;
+        }
+		
+		#result {
+			font-size: 18px;
+			font-weight: bold;
+			margin-top: 10px;
+		}
+	</style>
+</head>
+<body>
+    <h1>Simple Interest Calculator</h1>
+	<div class="calculator">
+		<input type="number" id="principle" placeholder="Amount">
+		<input type="number" id="tenure" placeholder="Tenure (years)">
+		<input type="number" id="rate" placeholder="Rate of Interest (%)">
+		<button onclick="calculateSI()">Calculate</button>
+		<p id="result"></p>
+	</div>
+	
+	<script>
+		function calculateSimpleInterest(principle, tenure, rate) {
+			return (principle * tenure * rate) / 100;
+		}
+		
+		function calculateSI() {
+			const principle = parseFloat(document.getElementById("principle").value);
+			const tenure = parseFloat(document.getElementById("tenure").value);
+			const rate = parseFloat(document.getElementById("rate").value);
+		
+			if (isNaN(principle) || isNaN(tenure) || isNaN(rate)) {
+				document.getElementById("result").innerHTML = "Invalid input. Please enter numbers only.";
+				return;
+			}
+		
+			if (principle <= 0 || tenure <= 0 || rate <= 0) {
+				document.getElementById("result").innerHTML = "All inputs must be positive numbers.";
+				return;
+			}
+		
+			const simpleInterest = calculateSimpleInterest(principle, tenure, rate);
+			document.getElementById("result").innerHTML = `Simple Interest: Rs.${simpleInterest.toFixed(2)}`;
+		}
+	</script>
+</body>
+</html>
